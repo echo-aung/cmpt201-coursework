@@ -1,0 +1,10 @@
+#include <stdio.h>
+#include <unistd.h>
+
+int main() {
+  for (int i = 0; i <= 3; i++) {
+    printf("Itr: %d\n", i);
+    int sleepTime = sleep(i);
+    printf("Slept for %d\n", sleepTime);
+  }
+}
