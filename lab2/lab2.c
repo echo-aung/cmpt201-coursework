@@ -43,5 +43,6 @@ int main() {
       waitpid(pid, &wait_status, 0);
       printf("parent out!!\n");
     }
+    free(line);
   }
 }
