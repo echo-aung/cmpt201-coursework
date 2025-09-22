@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+int main() {
+  pid_t pid = fork();
+  printf("Successfully forked with pid=%d\n", pid);
+
+  if (pid == 0) {
+    printf("Parent in\n");
+    execl("/bin/ls", "-a");
+
+  } else {
+    printf("Child in\n");
+  }
+}

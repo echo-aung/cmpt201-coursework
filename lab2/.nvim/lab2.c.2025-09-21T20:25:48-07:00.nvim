@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/wait.h>
+
+int main() {
+  // fork first
+  // for child: print, take input, use exec
+  // for parent: waitpid
+  // after the `if statements`, loop again
+  
+
+  pid_t pid = fork();
+  
+  if (pid == 0) {
+    // do exec
+    printf("Enter programs to run.\n");
+    printf("> ");
+    sleep(5);
+
+  } else {
+      int wait_status;
+      waitpid(pid, &wait_status, 0);
+      printf("parent out!!\n");
+  
+  }
+
+}
+
+

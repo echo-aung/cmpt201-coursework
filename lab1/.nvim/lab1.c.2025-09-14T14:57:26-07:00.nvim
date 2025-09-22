@@ -1,0 +1,16 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+  printf("Please enter some text: ");
+
+  // set up getline()
+  char *input_line = NULL;
+  size_t str_length = 0;
+  size_t nread;
+  while ((nread = getline(&input_line, &str_length, stdin)) != -1) {
+    printf("Reading character %zd\n", nread);
+  }
+  printf("I GOT OUT OF THE LOOP!");
+  free(input_line);
+}

@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+int main() {
+  pid_t pid = fork();
+  printf("Successfully forked with pid=%d\n", pid);
+
+  // parent always run first
+  if (pid == 0) {
+    sleep(3);
+  }
+
+  if (pid != 0) {
+    printf("Parent in\n");
+    execl("/usr/bin/ls", "/usr/bin/ls", "-a", NULL);
+
+  } else {
+    printf("Child in\n");
+    char* const arguments[] = {"usr/bin/ls", "-a", "-l", "-h", NULL};
+    execv("/usr/bin/ls", arguments);
+  }
+}

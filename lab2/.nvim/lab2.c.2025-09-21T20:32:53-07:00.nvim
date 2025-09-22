@@ -1,0 +1,38 @@
+#define _POSIX_C_SOURCE 200809L
+#include <stdio.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <unistd.h>
+
+int main() {
+  // fork first
+  // for child: print, take input, use exec
+  // for parent: waitpid
+  // after the `if statements`, loop again
+
+  pid_t pid = fork();
+
+  if (pid == 0) {
+    
+    printf("Enter programs to run.\n");
+    printf("> ");
+    
+
+    // take input
+    char* line = NULL;
+    size_t str_length = 0;
+    ssize_t nread;
+    nread = getline(&line, &str_length, stdin);
+
+    if (nread != -1) {
+      // do exec
+      printf("Entered %s\n", line);
+    }
+
+
+  } else {
+    int wait_status;
+    waitpid(pid, &wait_status, 0);
+    printf("parent out!!\n");
+  }
+}
